@@ -70,6 +70,11 @@ module EcwidApi
         grant_type:    "authorization_code"
       )
 
+      Rails.logger.info "**ACCESS_TOKEN RESPONSE**"
+      Rails.logger.info response.inspect
+      Rails.logger.info "**BODY**"
+      Rails.logger.info response.body.inspect
+      
       if response.success?
         OpenStruct.new(response.body)
       else
