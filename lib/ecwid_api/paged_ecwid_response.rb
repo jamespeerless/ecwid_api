@@ -20,6 +20,14 @@ module EcwidApi
 
     def_delegator :@paged_enumerator, :each
 
+    def status
+      @status
+    end
+
+    def response
+      @response
+    end
+
     # Public: Initialize a new PagedEcwidResponse
     #
     # client - an EcwidApi::Client
@@ -34,6 +42,8 @@ module EcwidApi
       block ||= Proc.new { |item| item }
 
       response = client.get(path, params)
+      @response = response
+      @status = response.status
 
       @paged_enumerator = PagedEnumerator.new(response) do |response, yielder|
 
