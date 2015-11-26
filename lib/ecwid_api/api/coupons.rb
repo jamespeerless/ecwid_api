@@ -33,7 +33,6 @@ module EcwidApi
       # Returns a Coupon object
       def create(params)
         response = client.post("discount_coupons", params)
-        raise_on_failure(response) {|response| find(response.body["id"]) }
       end
 
       # Public: Updates an existing Coupon
